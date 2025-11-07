@@ -1,21 +1,15 @@
+# scripts/backup.sh
 #!/bin/bash
-
-# Bash Script: Automated Backup
-# Day 1 Task
-
-LOG="$HOME/wipro-capstone/logs/backup.log"
-SRC="$HOME/wipro-capstone"  
-DEST="$HOME/wipro-capstone/backups"
-
-echo "[$(date '+%Y-%m-%d %H:%M:%S')] Starting backup of $SRC..." >> "$LOG"
-
-mkdir -p "$DEST"
+LOG_FILE="$HOME/wipro-capstone/logs/backup.log"
+BACKUP_DIR="$HOME/wipro-capstone/backups"
+SOURCE="$HOME/wipro-capstone"  # ← FIXED: Now backs up project folder
+echo "[$(date)] Starting backup..." >> "$LOG_FILE"
+mkdir -p "$BACKUP_DIR"
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-BACKUP_PATH="$DEST/backup_$TIMESTAMP"
-
-if rsync -a --delete --progress "$SRC/" "$BACKUP_PATH/" >> "$LOG" 2>&1; then
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] SUCCESS: Backup saved to $BACKUP_PATH" | tee -a "$LOG"
+DEST="$BACKUP_DIR/backup_$TIMESTAMP"
+if rsync -a --progress "$SOURCE/" "$DEST/" >> "$LOG_FILE" 2>&1; then
+    echo "[$(date)] Backup successful: $DEST" | tee -a "$LOG_FILE"
 else
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] FAILED: Backup error. See log." | tee -a "$LOG"
+    echo "[$(date)] Backup FAILED" | tee -a "$LOG_FILE"
     exit 1
 fi

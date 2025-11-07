@@ -14,7 +14,6 @@ Maintenance "
     echo "3. Monitor System Logs"
     echo "4. View All Logs"
     echo "5. Exit"
-    echo "=================================="
     read -p "Choose [1-5]: " opt
 
     case $opt in
