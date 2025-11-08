@@ -1,7 +1,4 @@
 #!/bin/bash
-# Day 2: System Update & Cleanup – Wipro Capstone
-# Handles IPv6 blocking, logs everything, shows clear status
-
 LOG="$HOME/wipro-capstone/logs/update.log"
 mkdir -p "$(dirname "$LOG")"
 
