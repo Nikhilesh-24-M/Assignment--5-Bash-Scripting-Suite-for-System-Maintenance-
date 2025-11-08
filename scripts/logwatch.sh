@@ -1,8 +1,4 @@
 #!/bin/bash
-
-# Bash Script: Log Monitoring
-# Day 3 Task
-
 LOG="$HOME/wipro-capstone/logs/monitor.log"
 SYSLOG="/var/log/syslog"
 
